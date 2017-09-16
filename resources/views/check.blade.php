@@ -25,36 +25,23 @@
       
 
       <div class="well" align="center" id="add">
-      <table>
-        <tr>
-          <td style="width:70%"></td>
-          <td>
-                <div class="btn-group btn-group-justified" >
-                <a href="#" class="btn btn-primary b1">未審核商家</a>
-                <a href="#" class="btn btn-primary b2">待驗證商家</a>
-                </div>&nbsp;
-          </td>
-          <!-- <td>
-            <div class="input-group" style="margin-top: 20px; margin-bottom:  20px">
-              <input type="text" class="form-control" placeholder="Search ">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div>
-          </td> -->
-        </tr>
-      </table>
+     
+      <div class="btn-group btn-group-justified" style="width:50%" >
+        <a href="#" class="btn btn-primary b1">未審核商家</a>
+        <a href="#" class="btn btn-primary b2">待驗證商家</a>
+      </div>&nbsp;
+      
+                
+          
       
 
       <div class="con1">
           <div> <h4 style="font-weight:bold;">未審核商家</h4><h5 style="font-weight:bold;"></h5></div>
           <div class="thumbnail" style="color:black;padding:2%; margin:2%">
+          
             <table>
                 <tr>
                 <td style="width:78%"></td>
-                <td><input type="button" class="btn btn-danger" value="刪除">&nbsp;</td>
                 <td>
                     <div class="input-group" style="margin-top: 20px; margin-bottom:  20px">
                     <input type="text" class="form-control" placeholder="Search ">
@@ -67,72 +54,80 @@
                 </td>
                 </tr>
             </table>
-            
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th style="width:10%"></th>
-                    <th style="width:26%">編號</th>
-                    <th style="width:26%">商家名稱</th>
-                    <th style="width:26%">信箱</th>
+                    <th style="width:30%">商家名稱</th>
+                    <th style="width:30%">信箱</th>
+                    <th style="width:10%"></th>
+                    <th style="width:10%"></th>
                     <th style="width:10%"></th>
                 </tr>
                 </thead>
                 <tbody>
+                @for ($i=0 ;$i<=$count-1;$i++)
                 <tr>
                     <td></td> 
-                    <td><label><input type="checkbox" value=""> 01</label></td>
-                    <td>Nike</td>
-                    <td>john@example.com</td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
+                    <td>{{ $tsh[$i]->tsh_name}}</td>
+                    <td>{{ $tsh[$i]->tsh_mail}}</td>
+                    <td>
+                      <input type="button" class="btn btn-success" value="查看 " data-toggle="modal" data-target="#shop{{ $tsh[$i]->tsh_id}}"><br><br>
+                    </td>
+                    <td>
+                      <form action="checking_delete" method="get">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" value="{{ $tsh[$i]->tsh_id}}" name="tsh_id">
+                        <input type="submit" class="btn btn-danger" value="刪除並拒絕申請">
+                      </form>
+                      
+                    </td>
+                    <td></td>
                 </tr>
-                <tr>
-                    <td></td> 
-                    <td><label><input type="checkbox" value=""> 02</label></td>
-                    <td>威尼斯</td>
-                    <td>john@example.com</td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
-                </tr>
-                <tr>
-                    <td></td> 
-                    <td><label><input type="checkbox" value=""> 03</label></td>
-                    <td>Dooley</td>
-                    <td>john@example.com</td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
-                </tr>
+                @endfor 
                 </tbody>
             </table>
+            
           </div>  
       </div>
 
       <div class="con2" style="display:none">
-          <div> <h4 style="font-weight:bold;">待驗證商家</h4><h5 style="font-weight:bold;"></h5></div>
+      <div> <h4 style="font-weight:bold;">待驗證商家</h4><h5 style="font-weight:bold;"></h5></div>
           <div class="thumbnail" style="color:black;padding:2%; margin:2%">
-            
+          <table>
+                <tr>
+                <td style="width:78%"></td>
+                <td>
+                    <div class="input-group" style="margin-top: 20px; margin-bottom:  20px">
+                    <input type="text" class="form-control" placeholder="Search ">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                    </div>
+                </td>
+                </tr>
+            </table>
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th style="width:33%">編號</th>
-                    <th style="width:33%">商家名稱</th>
-                    <th style="width:33%">信箱</th>
+                  <th style="width:10%"></th>
+                  <th style="width:26%">商家名稱</th>
+                  <th style="width:26%">信箱</th>
+                  <th style="width:10%"></th>
                 </tr>
                 </thead>
                 <tbody>
+                @for ($i=0 ;$i<=$tsh_count_T-1;$i++)
                 <tr>
-                    <td>01</td>
-                    <td>Nuke</td>
-                    <td>john@example.com</td>
+                <td></td> 
+                <td>{{ $tsh_T[$i]->tsh_name}}</td>
+                <td>{{ $tsh_T[$i]->tsh_mail}}</td>
+                <td></td>
                 </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>john@example.com</td>
-                </tr>
+                @endfor 
+                
                 </tbody>
             </table>
           </div>  
@@ -145,26 +140,48 @@
 
 
 <!-- 小框 -->
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+@for ($i=0 ;$i<=$count-1;$i++)
+ <div class="modal fade" id="shop{{ $tsh[$i]->tsh_id}}" role="dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">{{ $tsh[$i]->tsh_name}}</h4>
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
+        <div class="modal-body" >
+          <p>商家類別</p>
+            <label for="comment">{{ $tsh[$i]->tsh_type}}</label>
+          <p>商家信箱</p>
+            <label>{{ $tsh[$i]->tsh_mail}}</label>
+          <p>商家電話</p>
+            <label>{{ $tsh[$i]->tsh_phone}}</label>
+          <p>商家地址</p>
+            <label>{{ $tsh[$i]->tsh_address}}</label>
+          <p>商家介紹敘述</p>
+            <label>{{ $tsh[$i]->tsh_info}}</label>
+          <p>商家圖片</p>
+            <label>{{ $tsh[$i]->tsh_pic}}</label>
+          <p>商家管理者</p>
+            <label>{{ $tsh[$i]->tsh_admin}}</label>
+          <p>商家管理者連絡電話</p>
+            <label>{{ $tsh[$i]->tsh_admin_phone}}</label>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <form action="checking" method="get">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" value="{{ $tsh[$i]->tsh_id}}" name="tsh_id">
+            <input type="submit" class="btn btn-primary" value="通過審核">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </form>
+          
         </div>
       </div>
       
     </div>
   </div>
-
+@endfor 
 
 <script>
   $(".b1").click(function(){

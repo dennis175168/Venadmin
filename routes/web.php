@@ -18,5 +18,7 @@ Route::get('/', function () {
 Route::get('home','HomeController@index');
 Route::get('member','MemberController@index');
 Route::get('check','CheckController@index');
+Route::get('checking','CheckController@checking');
+Route::get('checking_delete','CheckController@checking_delete');
 Route::get('announce','AnnounceController@index');
 Route::get('control','ControlController@index');
