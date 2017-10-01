@@ -27,12 +27,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar" >
         <div class="input-group" style="margin-top: 20px; margin-bottom:  20px">
-        <input type="text" class="form-control" placeholder="Search ">
-        <span class="input-group-btn">
+        <!--<input type="text" class="form-control" placeholder="Search ">
+         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
           </button>
-        </span>
+        </span> -->
       </div>
       <ul class="nav navbar-nav" >
         <li class="active" ><a href="#"><span class="glyphicon glyphicon-edit"></span> 店家介紹</a></li>
@@ -52,12 +52,12 @@
       <div style="text-align: center"><img src="images/logo.png" width="50%"></div>
 
       <div class="input-group" style="margin-top: 20px; margin-bottom:  20px">
-        <input type="text" class="form-control" placeholder="Search ">
-        <span class="input-group-btn">
+        <!--<input type="text" class="form-control" placeholder="Search ">
+         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
           </button>
-        </span>
+        </span> -->
       </div>
 
       <ul class="nav nav-pills nav-stacked">

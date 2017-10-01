@@ -22,3 +22,6 @@ Route::get('checking','CheckController@checking');
 Route::get('checking_delete','CheckController@checking_delete');
 Route::get('announce','AnnounceController@index');
 Route::get('control','ControlController@index');
+Route::post('control_delete','ControlController@delete_sh');
+Route::get('control_update','ControlController@update_sh');
+Route::get('control_search','ControlController@search_sh');

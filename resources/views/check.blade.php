@@ -161,8 +161,8 @@
             <label>{{ $tsh[$i]->tsh_address}}</label>
           <p>商家介紹敘述</p>
             <label>{{ $tsh[$i]->tsh_info}}</label>
-          <p>商家圖片</p>
-            <label>{{ $tsh[$i]->tsh_pic}}</label>
+          <!-- <p>商家圖片</p>
+            <label>{{ $tsh[$i]->tsh_pic}}</label> -->
           <p>商家管理者</p>
             <label>{{ $tsh[$i]->tsh_admin}}</label>
           <p>商家管理者連絡電話</p>
