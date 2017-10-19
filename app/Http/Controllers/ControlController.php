@@ -10,8 +10,8 @@ class ControlController extends Controller
 {
     //
     public function index(){
-        $sh = Shop::get();
-        $sh_count = Shop::count();
+        $sh = Shop::where('sh_delete','=',null)->get();
+        $sh_count = Shop::where('sh_delete','=',null)->count();
         return view('control',[
             'sh' => $sh,
             'sh_count' => $sh_count
@@ -21,10 +21,11 @@ class ControlController extends Controller
     public function delete_sh(){
         $input = Input::all();
         $_id = $input['sh_id'];
-        Shop::where('sh_id','=',$_id)->delete();
+        Shop::where('sh_id','=',$_id)->update(['sh_delete'=>'T']);
+        //Shop::where('sh_id','=',$_id)->delete();
 
-        $sh = Shop::get();
-        $sh_count = Shop::count();
+        $sh = Shop::where('sh_delete','=',null)->get();
+        $sh_count = Shop::where('sh_delete','=',null)->count();
         return view('control',[
             'sh' => $sh,
             'sh_count' => $sh_count
@@ -37,8 +38,8 @@ class ControlController extends Controller
         $column = $input['column'];
         Shop::where('sh_id','=',$_id)->update([$column=>'reject']);
 
-        $sh = Shop::get();
-        $sh_count = Shop::count();
+        $sh = Shop::where('sh_delete','=',null)->get();
+        $sh_count = Shop::where('sh_delete','=',null)->count();
         return view('control',[
             'sh' => $sh,
             'sh_count' => $sh_count

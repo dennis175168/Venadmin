@@ -47,23 +47,30 @@
         <div class="c1" style="display: none">
           <h4 style="font-weight:bold;">發布消息</h4><h4 style="font-weight:bold;"></h4>
           <div style="text-align:left; padding:5%">
-          <form>
 
+          <form action="announce_insert" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
-              <label for="usr">單位: 行政管理</label>   |
-              <label for="usr">時間: 2017/9/9</label>
+              <label for="usr">單位: {{$editor}}</label>   |
+              <label for="usr">時間: {{$now}}</label>
             </div>
             <div class="form-group">
               <label for="usr">主旨:</label>
-              <input type="text" class="form-control" id="usr">
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+              <label for="usr">附加文件連結:</label>
+              <textarea class="form-control" rows="2" id="doc" name="doc"></textarea>
             </div>
             <div class="form-group">
               <label for="usr">內容:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <textarea class="form-control" rows="5" id="content" name="content"></textarea>
             </div>
+            <input type="hidden" name="time" value="{{$now}}">
+            <input type="hidden" name="editor" value="{{$editor}}">
             <input type="submit" class="btn btn-danger" value="送出">
-
           </form>
+
           </div>
         </div>
 
@@ -93,34 +100,33 @@
                 <thead>
                 <tr>
                     <th style="width:10%"></th>
-                    <th style="width:26%">編號</th>
+                    <th style="width:26%">發布時間</th>
                     <th style="width:26%">主旨</th>
                     <th style="width:26%">單位</th>
-                    <th style="width:10%"></th>
+                    <th style="width:5%"></th>
+                    <th style="width:5%"></th>
                 </tr>
                 </thead>
                 <tbody>
+                @for ($i=0 ;$i<=$bd_info_count-1;$i++)
                 <tr>
                     <td></td>
-                    <td><label><input type="checkbox" value=""> 01</label></td>
-                    <td>系統更新</td>
-                    <td>威尼斯 </td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
+                    <td>{{ $bd_info[$i]->updated_at}}</td>
+                    <td>{{ $bd_info[$i]->bd_title}}</td>
+                    <td>{{ $bd_info[$i]->bd_editor}} </td>
+                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#bd{{ $bd_info[$i]->bd_id}}"></td>
+                    <td>
+                      <form action="announce_delete" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="bd_id" value="{{ $bd_info[$i]->bd_id}}">
+                        <input type="submit" class="btn btn-danger" value="刪除" >
+
+                      </form>
+                    </td>
+
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><label><input type="checkbox" value=""> 02</label></td>
-                    <td>威尼斯</td>
-                    <td>行政</td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
-                </tr>
-                <tr>
-                    <td></label></td>
-                    <td><label><input type="checkbox" value=""> 03</label></td>
-                    <td>Dooley</td>
-                    <td>行銷</td>
-                    <td><input type="button" class="btn btn-success" value="編輯 " data-toggle="modal" data-target="#myModal"></td>
-                </tr>
+                @endfor
+                
                 </tbody>
             </table>
             </div>
@@ -130,7 +136,31 @@
 
 </div>
 
-
+<!-- 小框 -->
+@for ($i=0 ;$i<=$bd_info_count-1;$i++)
+ <div class="modal fade" id="bd{{ $bd_info[$i]->bd_id}}" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{ $bd_info[$i]->bd_title}}</h4>
+        </div>
+        <div class="modal-body" >
+          <p>商家類別</p>
+            <label for="comment">{{ $bd_info[$i]->bd_content}}</label>
+          
+        </div>
+        <div class="modal-footer">
+         
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+@endfor 
 
 
 <script>
