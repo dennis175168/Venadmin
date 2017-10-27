@@ -8,4 +8,8 @@ class Shop extends Model
 {
     //
     protected $table = "shop";
+
+    public function beacon(){
+        return $this -> belongsTo ('App\Beacon','sh_id','sh_id');
+    }
 }

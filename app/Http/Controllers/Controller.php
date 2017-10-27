@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function  aaa(){
+        return "view('beacon',[
+            'bc_info' => $bc_info,
+            'bc_info_count' => $bc_info_count,
+            'sh_bc_info' => $sh_bc_info,
+            'sh_bc_info_count' => $sh_bc_info_count,
+        ]);";
+    }
 }

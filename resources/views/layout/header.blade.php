@@ -47,7 +47,7 @@
 
 <div class="container-fluid">
 <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs" id="add1"><div style="z-index: 999; position: fixed; top: 0px; width: 13%;">
+    <div class="col-sm-3 sidenav hidden-xs" id="add" ><div style="z-index: 999; position: fixed; top: 0px; width: 13%; ">
       <!-- <h2>VENUS</h2> -->
       <div style="text-align: center"><img src="images/logo.png" width="50%"></div>
 
@@ -60,12 +60,13 @@
         </span> -->
       </div>
 
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="home"><span class="	glyphicon glyphicon-th"></span> Home </a></li>
+      <ul class="nav nav-pills nav-stacked" >
+        <li><a href="home" ><span class="	glyphicon glyphicon-th"></span> Home </a></li>
         <li><a href="member"><span class="glyphicon glyphicon-edit"></span> 會員管理</strong>  </a></li>
         <li><a href="check"><span class="glyphicon glyphicon-phone"></span> 商家申請審核</strong></a></li>
         <li><a href="announce"><span class="glyphicon glyphicon-exclamation-sign"></span> 發布商圈消息</a></li>
         <li><a href="control"><span class="glyphicon glyphicon-envelope"></span> 商家資訊控管</a></li>
+        <li><a href="beacon"><span class="glyphicon glyphicon-record"></span> Beacon 設置</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
       </ul><br>
 
